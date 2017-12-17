@@ -14,10 +14,19 @@ const app = express()
 // 页面模板
 const template = fs.readFileSync(resolve('./src/index.template.html'), 'utf-8')
 
-const createRender = (bundle, options = {}) => createBundleRenderer(bundle, Object.assign({}, options, {
-	template,
-	runInNewContext: false
-}));
+function createRenderer(bundle, options) {
+
+	options.clientManifest.publicPath = '/dist/';
+
+	return createBundleRenderer(bundle, Object.assign({}, options, {
+		template,
+		// this is only needed when vue-server-renderer is npm-linked
+		basedir: resolve('./' + resPath),
+		// recommended for performance
+		runInNewContext: false
+	}));
+
+}
 
 let renderer
 let readyPromise
@@ -77,10 +86,11 @@ const render = (req, res) => {
 }
 
 app.get('*', isProd ? render : (req, res) => {
-  readyPromise.then(() => render(req, res))
+  readyPromise.then(() => render(req, res));
 })
 
-const port = appConfig.port || process.env.PORT || 8080
+// const port = appConfig.port || process.env.PORT || 8080
+const port = process.env.PORT || 8080
 app.listen(port, () => {
   console.log(`server started at localhost:${port}`)
 })
