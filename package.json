@@ -1,0 +1,29 @@
+{
+  "name": "vue_ssr_study",
+  "version": "1.0.0",
+  "description": "vue ssr study",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiongxiong109/vue_ssr_study.git"
+  },
+  "keywords": [
+    "vue",
+    "ssr"
+  ],
+  "author": "xiongxiong109",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xiongxiong109/vue_ssr_study/issues"
+  },
+  "homepage": "https://github.com/xiongxiong109/vue_ssr_study#readme",
+  "dependencies": {
+    "compression": "^1.7.1",
+    "express": "^4.16.2",
+    "vue": "^2.5.11",
+    "vue-server-renderer": "^2.5.11"
+  }
+}
