@@ -9,15 +9,26 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const Home = () => import('./pages/home/Home')
+const List = () => import('./pages/list/List')
 
 export const createRouter = () => new VueRouter({
 	mode: 'history',
 	fallback: false,
 	routes: [
 		{
+			name: 'index',
+			path: '/',
+			redirect: '/home'
+		},
+		{
 			name: 'home',
 			path: '/home',
 			component: Home
+		},
+		{
+			name: 'list',
+			path: '/list',
+			component: List
 		}
 	]
 })

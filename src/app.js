@@ -11,5 +11,5 @@ export function createApp() {
 		render: r => r(App)
 	});
 
-	return { app }
+	return { app, router }
 }

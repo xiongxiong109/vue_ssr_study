@@ -2,6 +2,9 @@
 import Vue from 'vue'
 import { createApp } from './app'
 
-const { app } = createApp(); // 工厂模式，创建每一个app
+const { app, router } = createApp(); // 工厂模式，创建每一个app
 
-app.$mount('#app');
+// 客户端渲染
+router.onReady(() => {
+	app.$mount('#app');
+});

@@ -8,10 +8,38 @@ export default context => {
 	return new Promise((resolve, reject) => {
 		const s = isDev && Date.now()
 
-		const { app } = createApp();
+		const { app, router } = createApp();
 		const { url, request } = context
-		console.log(url); // 暂时未引入路由, 任意的url匹配都返回成功的app实例
-		resolve(app);
+		const { fullPath } = router.resolve(url).route
+
+
+		if (fullPath !== url) {
+        return reject({ url: fullPath })
+    }
+
+		// set router's location
+    router.push(url)
+
+    router.onReady(() => {
+    	// 获取匹配路由的页面
+    	const matchedComponents = router.getMatchedComponents();
+
+    	// no matched routes
+    	if (!matchedComponents.length) {
+    	  return reject({ code: 404 })
+    	}
+
+    	Promise
+    	.all(matchedComponents.map(({asyncData}) => asyncData && asyncData({
+    		route: router.currentRoute
+    	})))
+    	.then(() => {
+    		isDev && console.log(`data pre-fetch: ${Date.now() - s}ms`)
+    		resolve(app)
+    	})
+    	.catch(reject)
+
+    }, reject);
 		
 	});
 }

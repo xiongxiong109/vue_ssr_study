@@ -1,5 +1,6 @@
 <template>
 	<div class="app-layer">
 		<h4>home page</h4>
+		<router-link to="list">to list page</router-link>
 	</div>
 </template>
