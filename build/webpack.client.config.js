@@ -4,7 +4,7 @@ const SWPrecachePlugin = require('sw-precache-webpack-plugin')
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 
 const dev = require('./webpack.dev.config')
-const prod = {}
+const prod = require('./webpack.prod.config');
 const isProd = process.env.NODE_ENV === 'production'
 const base = isProd ? prod : dev
 
