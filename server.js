@@ -1,5 +1,7 @@
 const fs = require('fs')
 const path = require('path')
+const LRU = require('lru-cache')
+const microcache = require('route-cache')
 const express = require('express')
 const compression = require('compression')
 const { createBundleRenderer } = require('vue-server-renderer')
@@ -20,6 +22,10 @@ function createRenderer(bundle, options) {
 
 	return createBundleRenderer(bundle, Object.assign({}, options, {
 		template,
+		cache: LRU({
+      max: 1000,
+      maxAge: 1000 * 60 * 15
+    }),
 		// this is only needed when vue-server-renderer is npm-linked
 		basedir: resolve('./' + resPath),
 		// recommended for performance
@@ -49,7 +55,7 @@ const serve = (path, cache) => express.static(resolve(path), {
 })
 
 app.use(express.static(path.resolve(__dirname, 'public'))); // 设置静态资源目录
-
+app.use(microcache.cacheSeconds(1, req => req.originalUrl));
 app.use(compression({ threshold: 0 }))
 app.use(('/' + resPath), serve(('./' + resPath), true))
 
