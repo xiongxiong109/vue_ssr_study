@@ -12,9 +12,6 @@
 				meeting: ''
 			}
 		},
-		created() {
-			console.log('I will print on the server side');
-		},
 		methods: {
 			evtChange() {
 				this.meeting = 'Hello SSR';

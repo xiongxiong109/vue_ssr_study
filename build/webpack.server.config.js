@@ -5,7 +5,7 @@ const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 
 // server 与client 都引入同样的配置, 只是针对环境变量做一些区别处理
 const dev = require('./webpack.dev.config')
-const prod = {}
+const prod = require('./webpack.prod.config')
 const isProd = process.env.NODE_ENV === 'production'
 const base = isProd ? prod : dev
 
@@ -13,7 +13,7 @@ module.exports = merge(base, {
 	target: 'node',
 	entry: './src/entry-server.js',
 	output: {
-	  filename: 'server-bundle.js',
+	  filename: '[name].[chunkhash:5].js',
 	  libraryTarget: 'commonjs2' // 服务端的模块化方案, 采用commonjs
 	},
 	externals: nodeExternals({
