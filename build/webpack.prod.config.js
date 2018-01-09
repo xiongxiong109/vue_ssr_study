@@ -9,7 +9,7 @@ let config = require('./webpack.base.config')
 
 module.exports = merge(config, {
   output: {
-    path: path.resolve(__dirname, '..', 'dist'), // 生产静态资源打包后放置的文件夹
+    path: path.resolve(__dirname, '..', 'public', 'dist'), // 生产静态资源打包后放置的文件夹
     publicPath: '/dist/' // 生产静态资源引用path
   },
   devtool: false,

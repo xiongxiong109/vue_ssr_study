@@ -32,7 +32,11 @@ let renderer
 let readyPromise
 
 if (isProd) { // 生产环境下, 走打包编译后的文件
-
+	const serverBundle = require(path.resolve(__dirname, 'public', 'dist', 'vue-ssr-server-bundle.json'));
+	const clientManifest = require(path.resolve(__dirname, 'public', 'dist', 'vue-ssr-client-manifest.json'));
+	renderer = createRenderer(serverBundle, {
+		clientManifest
+	});
 } else { // 开发环境下, 走webpack打包与hot reload
 	readyPromise = require('./build/setup-dev-server')(app, (bundle, options) => {
 	  renderer = createRenderer(bundle, options)
@@ -43,6 +47,8 @@ if (isProd) { // 生产环境下, 走打包编译后的文件
 const serve = (path, cache) => express.static(resolve(path), {
   maxAge: cache && isProd ? 1000 * 60 * 60 * 24 * 30 : 0
 })
+
+app.use(express.static(path.resolve(__dirname, 'public'))); // 设置静态资源目录
 
 app.use(compression({ threshold: 0 }))
 app.use(('/' + resPath), serve(('./' + resPath), true))
