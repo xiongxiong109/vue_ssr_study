@@ -8,7 +8,7 @@ export default context => {
 	return new Promise((resolve, reject) => {
 		const s = isDev && Date.now()
 
-		const { app, router } = createApp();
+		const { app, router, store } = createApp();
 		const { url, request } = context
 		const { fullPath } = router.resolve(url).route
 
@@ -28,9 +28,10 @@ export default context => {
     	if (!matchedComponents.length) {
     	  return reject({ code: 404 })
     	}
-
+        // 找到组件中存在的asyncData方法, 如果组件有这个方法, 那么就在服务端调用该方法渲染
     	Promise
     	.all(matchedComponents.map(({asyncData}) => asyncData && asyncData({
+            store,
     		route: router.currentRoute
     	})))
     	.then(() => {
