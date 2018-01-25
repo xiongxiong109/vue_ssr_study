@@ -10,7 +10,10 @@ module.exports = {
 		filename: '[name].[chunkhash:5].js'
 	},
 	resolve: {
-		extensions: ['.js', '.vue', '.less'] // 解析文件后缀
+		extensions: ['.js', '.vue', '.less'], // 解析文件后缀
+    alias: {
+      '@': path.resolve(__dirname, '..', 'src')
+    }
 	},
 	module: {
 		noParse: /es6-promise\.js$/, // avoid webpack shimming process

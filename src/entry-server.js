@@ -36,6 +36,7 @@ export default context => {
     	})))
     	.then(() => {
     		isDev && console.log(`data pre-fetch: ${Date.now() - s}ms`)
+            context.state = store.state; // 获取服务端同步渲染的store state, 这句话会在页面上打印出window.__INITIAL_STATE__
     		resolve(app)
     	})
     	.catch(reject)

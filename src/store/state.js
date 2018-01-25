@@ -1,5 +1,5 @@
 let state = {
-  title: 'hello vue ssr'
+  title: ''
 }
 
 export default state
