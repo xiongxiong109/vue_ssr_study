@@ -1,23 +1,11 @@
 // 客户端入口配置
 import Vue from 'vue'
 import { createApp } from './app'
+import BaseView from './mixins/base.view'
 
 const { app, router, store } = createApp(); // 工厂模式，创建每一个app
 
-Vue.mixin({
-  beforeMount () {
-    const { asyncData } = this.$options
-    if (asyncData) {
-      // 将获取数据操作分配给 promise
-      // 以便在组件中，我们可以在数据准备就绪后
-      // 通过运行 `this.dataPromise.then(...)` 来执行其他任务
-      this.dataPromise = asyncData({
-        store: this.$store,
-        route: this.$route
-      })
-    }
-  }
-})
+Vue.mixin(BaseView)
 
 // 同步混淆服务端渲染数据
 if (window.__INITIAL_STATE__) {

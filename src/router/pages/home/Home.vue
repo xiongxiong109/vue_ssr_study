@@ -10,6 +10,7 @@
   import LoadingIndicator from '@/components/loading.indicator';
 
   export default {
+    isPreload: true,
     async asyncData({ store }) { // 执行异步方法, 异步获取服务数据, 这个异步方法配置在entry-server中, 执行的时候上下文是获取不到this对象的, 所以只能拿到store
       let rst = await setTimeout(() => {
       store.dispatch('COM/CHANGE_TITLE', 'Hello I am rendered from server side')
@@ -19,9 +20,6 @@
       state() {
         return this.$store.state
       }
-    },
-    created() {
-      console.log('I will print on server side');
     },
     components: {
       [LoadingIndicator.name]: LoadingIndicator
