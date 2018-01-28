@@ -1,7 +1,7 @@
 <template>
 	<div class="app-layer">
     <loading-indicator :value="state.title">
-      <h4>home page {{state.title}}</h4>
+      <h4 class="home-title">home page {{state.title}}</h4>
     </loading-indicator>
 		<router-link to="list">to list page</router-link>
 	</div>
@@ -26,3 +26,9 @@
     }
   }
 </script>
+<style type="text/css">
+  .home-title {
+    font-size: 14px;
+    color: #333;
+  }
+</style>
