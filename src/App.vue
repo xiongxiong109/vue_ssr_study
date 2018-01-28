@@ -19,3 +19,4 @@
 		}
 	}
 </script>
+<style src="./assets/css/normalize.css"></style>

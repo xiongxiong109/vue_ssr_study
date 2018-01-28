@@ -1,0 +1,5 @@
+{
+	autoprefixer: {
+		browsers: ["latest 2 versions"]
+	}
+}
