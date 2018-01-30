@@ -7,9 +7,12 @@
 	</div>
 </template>
 <script type="text/javascript">
+  import BaseView from '@/router/pages/base.view';
   import LoadingIndicator from '@/components/loading.indicator';
 
   export default {
+    mixins: [BaseView],
+    title: 'Home Page',
     isPreload: true,
     async asyncData({ store }) { // 执行异步方法, 异步获取服务数据, 这个异步方法配置在entry-server中, 执行的时候上下文是获取不到this对象的, 所以只能拿到store
       let rst = await setTimeout(() => {

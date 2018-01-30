@@ -6,7 +6,11 @@
 	</div>
 </template>
 <script type="text/javascript">
+  import BaseView from '@/router/pages/base.view';
+
   export default {
+    mixins: [BaseView],
+    title: 'list page',
     methods: {
       evtChangeTitle(str) {
         this.$store.commit('COM/CHANGE_TITLE', str);
