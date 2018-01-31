@@ -12,13 +12,13 @@ config.performance.hints = false
 // 开发环境下直接内嵌 CSS 以支持热替换
 config.module.rules.push({
     test: /\.less$/,
-    use: ['vue-style-loader','less-loader','postcss-loader']
+    use: ['vue-style-loader', 'less-loader', 'postcss-loader']
 }, {
     test: /\.css$/,
-    use: ['vue-style-loader','css-loader','postcss-loader']
-}); 
+    use: ['vue-style-loader', 'css-loader', 'postcss-loader']
+});
 
-config = merge(config,{
+config = merge(config, {
     plugins: [
         new FriendlyErrorsPlugin(),
         new BrowserSyncPlugin({
@@ -28,7 +28,7 @@ config = merge(config,{
             logConnections: false,
             notify: false,
             open: false
-          }, {
+        }, {
             reload: false
         }),
         new SkeletonWebpackPlugin({
