@@ -4,6 +4,7 @@ const merge = require('webpack-merge')
 let config = require('./webpack.base.config')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const SkeletonWebpackPlugin = require('vue-skeleton-webpack-plugin')
 
 config.devtool = '#cheap-module-source-map'
 config.performance.hints = false
@@ -29,6 +30,9 @@ config = merge(config,{
             open: false
           }, {
             reload: false
+        }),
+        new SkeletonWebpackPlugin({
+            webpackConfig: require('./webpack.skeleton.config')
         })
     ]
 })

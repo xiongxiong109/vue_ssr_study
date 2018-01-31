@@ -5,6 +5,7 @@
 */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Skeleton from '@/Skeleton'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ export const createRouter = () => new VueRouter({
 			name: 'list',
 			path: '/list',
 			component: List
+		},
+		{
+			name: 'skeleton',
+			path: '/skeleton',
+			component: Skeleton
 		}
 	]
 })
