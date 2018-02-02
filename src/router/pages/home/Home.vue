@@ -15,8 +15,9 @@
     title: 'Home Page',
     isPreload: true,
     async asyncData({ store }) { // 执行异步方法, 异步获取服务数据, 这个异步方法配置在entry-server中, 执行的时候上下文是获取不到this对象的, 所以只能拿到store
+      // store.dispatch('COM/CHANGE_TITLE', '');
       let rst = await setTimeout(() => {
-      store.dispatch('COM/CHANGE_TITLE', 'Hello I am rendered from server side')
+      store.dispatch('COM/CHANGE_TITLE', `server side ${Math.random()}`)
       }, 1e3);
     },
     computed: {

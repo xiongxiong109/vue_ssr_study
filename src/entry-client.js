@@ -1,9 +1,14 @@
 // 客户端入口配置
+// 客户端配置会在服务端渲染完成后混淆代码, 这个时候的环境里是可以拿到document和window等BOM的
+
 import Vue from 'vue'
+import FastClick from 'fastclick'
 import { createApp } from './app'
 import BaseView from './mixins/base.view'
 
 const { app, router, store } = createApp(); // 工厂模式，创建每一个app
+// fastclick
+FastClick.attach(document.body);
 
 Vue.mixin(BaseView)
 

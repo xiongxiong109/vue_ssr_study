@@ -27,6 +27,7 @@
   "dependencies": {
     "compression": "^1.7.1",
     "express": "^4.16.2",
+    "fastclick": "^1.0.6",
     "lru-cache": "^4.1.1",
     "normalize.css": "^7.0.0",
     "route-cache": "^0.4.4",
