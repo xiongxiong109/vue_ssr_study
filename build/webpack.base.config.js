@@ -10,7 +10,7 @@ module.exports = {
 		filename: '[name].[chunkhash:5].js'
 	},
 	resolve: {
-		extensions: ['.js', '.vue', '.less'], // 解析文件后缀
+		extensions: ['.js', '.vue', '.less', '.md'], // 解析文件后缀
     alias: {
       '@': path.resolve(__dirname, '..', 'src')
     }
@@ -27,6 +27,10 @@ module.exports = {
 				test: /\.js$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/
+			},
+			{ // markdown
+				test: /\.md$/,
+				loaders: ['html-loader', 'markdown-loader']
 			},
 			{
         test: /\.(png|jpe?g|gif|svg)$/,
